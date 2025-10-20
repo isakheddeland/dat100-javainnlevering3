@@ -9,7 +9,7 @@ public class Customers {
     // a) Complete constructor
     public Customers(int size) {
 
-        // TODO
+        this.customers = new Customer[size];
 
     }
 
@@ -19,7 +19,11 @@ public class Customers {
 
         int count = 0;
 
-        // TODO
+        for (Customer customer : customers){
+            if (customer.getCustomer_id() != 0){
+                count++;
+            }
+        }
 
         return count;
     }
@@ -30,17 +34,36 @@ public class Customers {
         boolean funnet = false;
         Customer c = null;
 
-        // TODO
+        for (Customer customer : customers){
+            if (customer.getCustomer_id() == customer_id){
+                funnet = true;
+                c = customer;
+                break;
+            }
+        }
 
-        return c;
+        if(funnet){
+            return c;
+        }else{
+            return null;
+        }
+
     }
 
     // d) add a customer to the reference table
     public boolean addCustomer(Customer c) {
 
         boolean inserted = false;
+        int i = 0;
 
-        // TODO
+        while (i < customers.length && !inserted){
+            if (customers[i] == null){
+                customers[i] = c;
+                inserted = true;
+            }else{
+                i++;
+            }
+        }
 
         return inserted;
     }
@@ -51,7 +74,15 @@ public class Customers {
         boolean deleted = false;
         Customer c = null;
 
-        // TODO
+        for (int i = 0; i < customers.length; i++){
+            Customer customer = customers[i];
+
+            if (customer != null && customer.getCustomer_id() == customer_id){
+                c = customer;
+                customers[i] = null;
+                break;
+            }
+        }
 
         return c;
     }
@@ -60,9 +91,15 @@ public class Customers {
     public Customer[] getCustomers() {
 
         Customer[] customers = null;
+        int count = 0;
 
-        // TODO
-
+        for (Customer customer : customers){
+            if (customer != null){
+                count++;
+            }
+        }
         return customers;
     }
+
+
 }

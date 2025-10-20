@@ -1,9 +1,7 @@
 package no.hvl.dat100.javel.oppgave2;
 
-import no.hvl.dat100.javel.oppgave1.DayPowerData;
+import java.time.Month;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class MonthMain {
     public static void main(String[] args) {
 
@@ -17,13 +15,32 @@ public class MonthMain {
         System.out.println("==============");
         System.out.println();
 
-        /*
-        TODO
+        MonthlyPower.print_PowerUsage(power_usage_month);
+        System.out.println();
+        System.out.println();
 
-         Write code that tests the methods you implement in the MonthlyPower class
-         Remember to teste the methods as you implement them
-         Remember to also to check that you get the expected results
-         */
+        MonthlyPower.print_PowerPrices(power_prices_month);
+        System.out.println();
+        System.out.println();
+
+
+        double totalUsage = MonthlyPower.computePowerUsage(power_usage_month);
+        System.out.println("Total månedlig strømforbruk: " + totalUsage + "kWh");
+        System.out.println();
+
+        boolean overHytte = MonthlyPower.exceedThreshold(power_usage_month, 1000);
+        boolean overBolig = MonthlyPower.exceedThreshold(power_usage_month, 5000);
+        System.out.println(overHytte);
+        System.out.println(overBolig);
+        System.out.println();
+
+        double spotPris = MonthlyPower.computeSpotPrice(power_usage_month, power_prices_month);
+        System.out.println(spotPris);
+        System.out.println();
+
+        double norgesPris = MonthlyPower.computeNorgesPrice(power_usage_month);
+        System.out.println("Norges pris: " + norgesPris + "kr/kWh");
+
 
     }
 }
